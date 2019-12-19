@@ -16,12 +16,24 @@ function App() {
   const addItem = item => {
     // add the given item to the cart
     setCart([...cart, item]);
+    console.log(item);
+    console.log(cart);
   };
+
+  const removeItem = item => {
+    console.log("Remove:", item);
+    const filterCart = cart.filter(item => item.id !== item);
+    return setCart(filterCart);
+  };
+
+  //   const popItem = popped => {
+  //     cart.pop(cart[popped]);
+  //   };
 
   return (
     <div className="App">
       <ProductContext.Provider value={{ products, addItem }}>
-        <CartContext.Provider value={cart}>
+        <CartContext.Provider value={{ cart, removeItem }}>
           <Navigation cart={cart} />
 
           {/* Routes */}
